@@ -1,0 +1,11 @@
+# ccls and clangd caches
+.ccls-cache/
+.clangd/
+.cache/
+
+# build directories
+build*/
+
+# hdoc output and test files
+hdoc-test/
+hdoc-output/

@@ -1,0 +1,22 @@
+[project]
+name = "example"
+version = "0.0.1"
+git_repo_url = "https://github.com/example/example/"
+git_default_branch = "main"
+
+[paths]
+compile_commands = "build/compile_commands.json"
+output_dir = "hdoc-output"
+
+[includes]
+paths = []
+use_system_includes = true
+
+[ignore]
+paths = [
+  "/tests/",
+  "/subprojects/",
+]
+
+[pages]
+homepage = "README.md"

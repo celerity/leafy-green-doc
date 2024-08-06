@@ -1,6 +1,7 @@
 # ccls and clangd caches
 .ccls-cache/
 .clangd/
+.cache/
 
 # build directories
 build*/

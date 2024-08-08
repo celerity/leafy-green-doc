@@ -118,6 +118,11 @@ static bool isHiddenFriendFunction(const clang::Decl* res) {
 void hdoc::indexer::matchers::FunctionMatcher::run(const clang::ast_matchers::MatchFinder::MatchResult& Result) {
   const auto res = Result.Nodes.getNodeAs<clang::FunctionDecl>("function");
 
+  // We must either deliberately ignore deleted functions or document them as deleted. Doing neither will mean
+  // they show up as _defined_, which is the opposite of the truth. Not listing them is the easier way out; if
+  // we ever do want document them we should also document implicitly deleted constructors and functions.
+  if (res->isDeletedAsWritten()) return;
+
   // Ignore deduction guides, at least for now
   // (generally, these usually are designed to make things work as one would expect, so
   //  having documentation for them is not as important as for other things)

@@ -131,7 +131,9 @@ void hdoc::indexer::Indexer::updateRecordNames() {
 void hdoc::indexer::Indexer::updateMemberFunctions() {
   for (auto& [k, c] : this->index.records.entries) {
     for (auto& symbol : c.methodIDs) {
-      auto& f = this->index.functions.entries[symbol];
+      if (!this->index.functions.contains(symbol)) continue;
+
+      auto& f = this->index.functions.entries.at(symbol);
       // split the proto into parts
       std::string templatePart = f.proto.substr(0, f.postTemplate);
       std::string preNamePart = f.proto.substr(f.postTemplate, f.nameStart - f.postTemplate);
